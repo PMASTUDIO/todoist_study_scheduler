@@ -1,0 +1,21 @@
+{
+  "name": "StudyScheduler",
+  "version": "0.0.1",
+  "main": "main.js",
+  "license": "MIT",
+  "scripts": {
+    "dev-css": "npx tailwindcss -i ./src/css/styles.css -o ./static/css/styles.css --watch",
+    "dev": "concurrently \"npm run dev-css\" \"electron .\"",
+    "start": "electron ."
+  },
+  "dependencies": {
+    "@doist/todoist-api-typescript": "^3.0.3",
+    "date-fns": "^3.6.0"
+  },
+  "devDependencies": {
+    "concurrently": "^9.0.1",
+    "electron": "^32.1.0",
+    "electron-reloader": "^1.2.3",
+    "tailwindcss": "^3.4.11"
+  }
+}

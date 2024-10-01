@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
+    <title>PKG Study Scheduler</title>
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+  <body>
+    <div class="w-full flex justify-between p-6">
+      <label for="subject_input">Course</label>
+      <select name="subject_input" id="subject_input">
+        <option value="ics_32">ICS 32</option>
+        <option value="math_2b">Math 2B</option>
+        <option value="physics_7c">Physics</option>
+        <option value="physics_7lc">Physics Lab</option>
+      </select>
+
+      <label for="content_input">Content</label>
+      <input type="text" id="content_input" name="content_input" />
+
+      <label for="difficulty_input">Difficulty</label>
+      <input
+        type="number"
+        max="5"
+        min="1"
+        id="difficulty_input"
+        name="difficulty_input"
+      />
+
+      <label for="date_input">Test date</label>
+      <input type="datetime-local" id="date_input" name="date_input" />
+    </div>
+
+    <script>
+      const subjectIdEl = document.querySelector("#subject_input");
+      const contentEl = document.querySelector("#content_input");
+      const difficultyEl = document.querySelector("#difficulty_input");
+      const dateEl = document.querySelector("#date_input");
+
+      const submitReview = async () => {
+        const subjectId = subjectIdEl.value;
+        const content = contentEl.value;
+        const difficulty = parseInt(difficultyEl.value);
+        const date = new Date(dateEl.value);
+
+        const res = await window.review.submit(
+          subjectId,
+          content,
+          difficulty,
+          date
+        );
+      };
+
+      document.addEventListener("keydown", (e) => {
+        if (event.key === "Enter") {
+          submitReview();
+        }
+      });
+    </script>
+  </body>
+</html>
